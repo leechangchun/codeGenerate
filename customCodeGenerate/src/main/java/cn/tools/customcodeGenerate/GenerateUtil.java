@@ -27,16 +27,30 @@ public class GenerateUtil {
         }
         return null;
     }
+    public List<String> getTableNames(Connection connection){
+        try {
+            DatabaseMetaData databaseMetaData = connection.getMetaData();
+            ResultSet rs = databaseMetaData.getTables(connection.getCatalog(), "%", "%", new String[]{"TABLE"});
+            while(rs.next()) {
+                System.out.println(rs.getString("TABLE_NAME"));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**根据表名取出字段*/
     public List<Field> getFields(Connection connection,String tableName) {
         try {
             DatabaseMetaData databaseMetaData = connection.getMetaData();
-            ResultSet resultSet = databaseMetaData.getColumns(null, "%", tableName, "%");
+
+            ResultSet resultSet = databaseMetaData.getColumns(connection.getCatalog(), "%", tableName, "%");
             List<Field> fields = new ArrayList<>();
             while (resultSet.next()) {
                 Field field = new Field();
-                field.setName(resultSet.getString("COLUMN_NAME"));
+                field.setColumn(resultSet.getString("COLUMN_NAME"));
+                field.setName(getFileName(field.getColumn()));
                 field.setType(sqlType2javaType(resultSet.getString("TYPE_NAME")));
                 fields.add(field);
             }
@@ -51,25 +65,32 @@ public class GenerateUtil {
         switch (sqlType) {
             case "VARCHAR":
             case "TEXT":
+            case "CHAR":
+            case "DATETIME":
+            case "TIMESTAMP":
                 return "String";
             case "INT":
+            case "TINYINT":
+            case "BIT":
                 return "int";
             case "DECIMAL":
                 return "double";
+            case "BIGINT":
+                return "long";
             default:
                 return sqlType;
         }
     }
     /**生成类文件*/
-    public void geneFile(String templateFileName,String packageName, String tableName, Map<String, Object> dataMap) {
+    public void geneFile(String templateFileName,String packageName, String tableName,String classFix, Map<String, Object> dataMap) {
         try {
             dataMap.put("packageName", packageName);
             dataMap.put("tableName", getDomainName(tableName));
-            String fileName = "./customCodeGenerate/src/main/java/" + packageName.replace('.', '/');
+            String fileName = "./app/src/main/java/" + packageName.replace('.', '/');
 
             File file1 = new File(fileName);
             file1.mkdirs();
-            FileWriter out = new FileWriter(file1.getPath() + "/" + getDomainName(tableName) + ".java");
+            FileWriter out = new FileWriter(file1.getPath() + "/" + getDomainName(tableName) +classFix+ ".java");
 
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
             String file = getClass().getResource("/").getFile();
@@ -85,6 +106,17 @@ public class GenerateUtil {
         }
     }
 
+    public String getFileName(String src) {
+        return lowerName(getDomainName(src));
+    }
+
+    //首字母大写
+    public static String lowerName(String name) {
+        char[] cs=name.toCharArray();
+        cs[0]+=32;
+        return String.valueOf(cs);
+
+    }
 
     /**将表名转换为实体类名*/
     public String getDomainName(String tableName){

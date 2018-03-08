@@ -2,6 +2,29 @@ package ${packageName};
 
 public class ${tableName}{
 <#list model as field>
-    private ${field.type} ${field.name?uncap_first};
+    private ${field.type} ${field.name};
 </#list>
+
+<#list model as field>
+    public ${field.type} get${field.name?cap_first}() {
+        return this.${field.name};
+    }
+
+    public void set${field.name?cap_first}(${field.type} ${field.name}) {
+        this.${field.name?uncap_first} = ${field.name};
+    }
+
+</#list>
+    @Override
+    public String toString() {
+        return "${tableName}{" +
+<#list model as field>
+    <#if field.type = 'String' >
+                "<#if field_index!=0>,</#if> ${field.name}='" + ${field.name} + '\'' +
+    <#else>
+                "<#if field_index!=0>,</#if> ${field.name}=" + ${field.name} +
+    </#if>
+</#list>
+                '}';
+    }
 }
