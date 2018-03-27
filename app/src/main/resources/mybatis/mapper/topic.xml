@@ -11,7 +11,7 @@
         insert into topics (id,name,banner,slogen)
         values (#{id},#{name},#{banner},#{slogen})
     </insert>
-    <delete id="deleteByID" parameterType="java.lang.Integer" >
+    <delete id="deleteById" parameterType="java.lang.Integer" >
         delete from topics
         where id = #{id}
     </delete>

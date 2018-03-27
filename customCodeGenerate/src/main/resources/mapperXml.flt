@@ -11,7 +11,7 @@
         insert into ${tableName?uncap_first} (<#list model as field>${field.name}<#if field_has_next>,</#if></#list>)
         values (<#list model as field>${r'#'}{${field.name}}<#if field_has_next>,</#if></#list>)
     </insert>
-    <delete id="deleteByID" parameterType="java.lang.Integer" >
+    <delete id="deleteById" parameterType="java.lang.Integer" >
         delete from ${tableName?uncap_first}
         where id = ${r'#'}{id}
     </delete>

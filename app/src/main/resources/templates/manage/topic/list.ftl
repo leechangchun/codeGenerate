@@ -5,7 +5,7 @@
         <#include "../side_bar.ftl">
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="sub-header">专题列表</h2>
+            <h2 class="sub-header">topic列表</h2>
             <form class="form-inline">
                 <a href="/manage/topic/add" class="btn btn-primary">添加topic</a>
             </form>
@@ -29,7 +29,7 @@
                         <th>${topic.slogen!}</th>
                         <td>
                             <a href="/manage/topic/update?id=${topic.id}">编辑</a>
-                            <a href="/manage/topic/delete?id=${topic.id}">删除</a>
+                            <button type="button" onclick="del(${topic.id})" class="btn btn-primary">删除</button>
                         </td>
                     </tr>
                     </#list>
@@ -39,6 +39,19 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
+        function del(id)
+        {
+            $.ajax({
+                url: '/manage/topic/delete?id='+id,
+                success: function(res){
+                    alert(res.message);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert('请求失败');
+                }
+            });
+        };
 </script>
 <#include "../footer.ftl">

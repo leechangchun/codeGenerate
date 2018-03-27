@@ -30,7 +30,9 @@ public class MallGenerate {
 
             generateUtil.geneMappers("mapperXml.flt",packageName+".mappers",tableName,"Mapper", map);
 
-            generateUtil.geneTemp("list.flt",packageName+".mappers",tableName,"Mapper", map);
+            generateUtil.geneTemp("list.flt","",tableName,"", map);
+            generateUtil.geneTemp("add.flt","",tableName,"", map);
+            generateUtil.geneTemp("update.flt","",tableName,"", map);
 
         });
     }

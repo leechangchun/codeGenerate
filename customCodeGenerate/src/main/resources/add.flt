@@ -1,0 +1,44 @@
+<${r'#'}include "../header.ftl">
+<${r'#'}include "../top_bar.ftl">
+<div class="container-fluid">
+    <div class="row">
+        <${r'#'}include "../side_bar.ftl">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">${domainName?uncap_first}添加</h2>
+            <form class="form-horizontal" name="add_form">
+                <#list model as field><#if field.name!='id'>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">${field.name}</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="${field.name}"  placeholder="">
+                    </div>
+                </div>
+                </#if></#list>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" onclick="post()" class="btn btn-primary">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ <script type="text/javascript">
+     function post()
+     {
+         $.ajax({
+             type: 'POST',
+             url: '/manage/${domainName?uncap_first}/add/post',
+             data: $('form[name=add_form]').serialize(),
+             success: function(res){
+                 alert(res.message);
+             },
+             error: function(xhr) {
+                 alert('请求失败');
+             }
+         });
+     };
+ </script>
+<${r'#'}include "../footer.ftl">

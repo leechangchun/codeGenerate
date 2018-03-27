@@ -27,7 +27,7 @@
                     </#list>
                         <td>
                             <a href="/manage/${domainName?uncap_first}/update?id=${r'$'}{${domainName?uncap_first}.id}">编辑</a>
-                            <a href="/manage/${domainName?uncap_first}/delete?id=${r'$'}{${domainName?uncap_first}.id}">删除</a>
+                            <button type="button" onclick="del(${r'$'}{${domainName?uncap_first}.id})" class="btn btn-primary">删除</button>
                         </td>
                     </tr>
                     </${r'#'}list>
@@ -37,6 +37,19 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
+        function del(id)
+        {
+            $.ajax({
+                url: '/manage/${domainName?uncap_first}/delete?id='+id,
+                success: function(res){
+                    alert(res.message);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert('请求失败');
+                }
+            });
+        };
 </script>
 <${r'#'}include "../footer.ftl">
