@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.WarehouseTasksMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.WarehouseTasks">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_package_id" jdbcType="INTEGER" property="orderPackageId" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from warehouse_tasks
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.WarehouseTasks">
+    insert into warehouse_tasks (id, warehouse_id, order_id, 
+      order_package_id, status)
+    values (#{id,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{orderPackageId,jdbcType=INTEGER}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.WarehouseTasks">
+    update warehouse_tasks
+    set warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_package_id = #{orderPackageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, warehouse_id, order_id, order_package_id, status
+    from warehouse_tasks
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, warehouse_id, order_id, order_package_id, status
+    from warehouse_tasks
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.WarehouseTasks">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_package_id" jdbcType="INTEGER" property="orderPackageId" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from warehouse_tasks
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.WarehouseTasks">
+    insert into warehouse_tasks (id, warehouse_id, order_id, 
+      order_package_id, status)
+    values (#{id,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{orderPackageId,jdbcType=INTEGER}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.WarehouseTasks">
+    update warehouse_tasks
+    set warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_package_id = #{orderPackageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, warehouse_id, order_id, order_package_id, status
+    from warehouse_tasks
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, warehouse_id, order_id, order_package_id, status
+    from warehouse_tasks
+  </select>
+</mapper>

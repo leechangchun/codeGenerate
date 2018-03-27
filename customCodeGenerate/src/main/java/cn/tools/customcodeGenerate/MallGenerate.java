@@ -13,20 +13,25 @@ public class MallGenerate {
     private static final String PASSWORD = "123456";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String packageName = "com.shucong.mall";
-    private static final List<String> tables = Arrays.asList("carts","orders","orders_package","orders_package_detail"
-            ,"product_attribute_values","product_attributes","product_sku","products");
+    private static final List<String> tables = Arrays.asList("topics");
 
     public static void main(String[] args) {
         GenerateUtil generateUtil = new GenerateUtil();
         Connection conn = generateUtil.getConnection(URL, USER, PASSWORD, DRIVER);
 
         tables.stream().forEach(tableName-> {
-            List<Field> fields = generateUtil.getFields(conn, tableName);
             Map<String,Object> map = new HashMap<>();
-            map.put("model", fields);
-            generateUtil.geneFile("model.flt",packageName+".bean",tableName,"", map);
-            generateUtil.geneFile("controller.flt",packageName+".controllers",tableName,"Controller", map);
-            generateUtil.geneFile("mapper.flt",packageName+".mapper",tableName,"Mapper", map);
+            map.put("model", generateUtil.getFields(conn, tableName));
+
+            generateUtil.geneJava("model.flt",packageName+".entity",tableName,"", map);
+            generateUtil.geneJava("controller.flt",packageName+".controllers.api",tableName,"Controller", map);
+            generateUtil.geneJava("manageController.flt",packageName+".controllers.manage",tableName,"Controller", map);
+            generateUtil.geneJava("mapper.flt",packageName+".mapper",tableName,"Mapper", map);
+
+            generateUtil.geneMappers("mapperXml.flt",packageName+".mappers",tableName,"Mapper", map);
+
+            generateUtil.geneTemp("list.flt",packageName+".mappers",tableName,"Mapper", map);
+
         });
     }
 }

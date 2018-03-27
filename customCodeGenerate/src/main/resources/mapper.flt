@@ -1,22 +1,18 @@
-package com.shucong.mall.mapper;
+package ${packageName};
 
-import com.shucong.mall.bean.${tableName};
+import com.shucong.mall.entity.${domainName};
 import java.util.List;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
-public interface ${tableName}Mapper {
-    @Insert({
-        "insert into ${tableName?uncap_first} (<#list model as field>${field.name}<#if field_has_next>,</#if></#list>)" +
-        "values (<#list model as field>${r'#'}{${field.name}}<#if field_has_next>,</#if></#list>)"
-    })
-    int insert(${tableName} ${tableName?uncap_first});
+public interface ${domainName}Mapper {
+    int insert(${domainName} ${domainName?uncap_first});
 
-    @Select("SELECT * FROM ${tableName?uncap_first} WHERE id = ${r'#'}{id}")
-    ${tableName} findById(String id);
+    int update(${domainName} ${domainName?uncap_first});
 
-    @Select({
-        "select * from ${tableName?uncap_first}"
-    })
-    List<${tableName}> findAll();
+    ${domainName} findById(int id);
+
+    List<${domainName}> findAll();
+
+    int deleteById(int id);
 }

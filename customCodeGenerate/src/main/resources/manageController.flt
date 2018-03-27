@@ -1,0 +1,87 @@
+package ${packageName};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import com.shucong.mall.utils.DataResponse;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.shucong.mall.mapper.${domainName}Mapper;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.shucong.mall.entity.${domainName};
+import java.util.Map;
+
+@Controller("Manage${domainName}Controller")
+@RequestMapping("manage/${domainName?uncap_first}")
+public class ${domainName}Controller {
+
+    private String  menu = "${tableName}";
+
+    @Autowired
+    private ${domainName}Mapper ${domainName?uncap_first}Mapper;
+
+    @RequestMapping("")
+    String list(Map<String, Object> model) {
+        model.put("list", ${domainName?uncap_first}Mapper.findAll());
+        model.put("menu", this.menu);
+        return "manage/${domainName?uncap_first}/list";
+    }
+
+    @RequestMapping("/add")
+    String add(Map<String, Object> model) {
+        model.put("menu", this.menu);
+        return "manage/${domainName?uncap_first}/add";
+    }
+
+    @RequestMapping("/add/post")
+    @ResponseBody
+    DataResponse addPost(<#list model as field><#if field.name!='id'>${field.type} ${field.name}<#if field_has_next>,</#if></#if></#list>) {
+        <#list model as field><#if field.name!='id' && field.type=='String'>
+        if (${field.name} == null || ${field.name}.trim().length() == 0) {
+            return new DataResponse(1000, "${field.name}不能为空");
+        }
+        </#if></#list>
+
+        ${domainName} ${domainName?uncap_first} = new ${domainName}();
+        <#list model as field><#if field.name!='id' && field.type=='String'>
+        ${domainName?uncap_first}.set${field.name?cap_first}(${field.name});
+        </#if></#list>
+        ${domainName?uncap_first}Mapper.insert(${domainName?uncap_first});
+
+        return new DataResponse(0, "添加成功");
+    }
+
+    @RequestMapping("/update")
+    String update(Integer id,Map<String, Object> model) {
+        ${domainName} ${domainName?uncap_first} = ${domainName?uncap_first}Mapper.findById(id);
+        model.put("menu", this.menu);
+        model.put("topic", ${domainName?uncap_first});
+        return "manage/${domainName?uncap_first}/update";
+    }
+
+    @RequestMapping("/update/post")
+    @ResponseBody
+    DataResponse updatePost(<#list model as field>${field.type} ${field.name}<#if field_has_next>,</#if></#list>) {
+<#list model as field><#if field.name!='id' && field.type=='String'>
+        if (${field.name} == null || ${field.name}.trim().length() == 0) {
+            return new DataResponse(1000, "${field.name}不能为空");
+        }
+</#if></#list>
+
+        ${domainName} ${domainName?uncap_first} = new ${domainName}();
+    <#list model as field>
+        ${domainName?uncap_first}.set${field.name?cap_first}(${field.name});
+    </#list>
+        ${domainName?uncap_first}Mapper.update(${domainName?uncap_first});
+        return new DataResponse(0, "修改成功");
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    DataResponse delete(Integer id) {
+        try {
+            ${domainName?uncap_first}Mapper.deleteById(id);
+            return new DataResponse(0, "删除成功");
+        } catch (Exception ex) {
+            return new DataResponse(1000, "删除失败：" +ex.getMessage());
+        }
+    }
+}

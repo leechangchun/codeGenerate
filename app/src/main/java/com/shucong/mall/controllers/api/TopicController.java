@@ -1,33 +1,33 @@
-package ${packageName};
+package com.shucong.mall.controllers.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.shucong.mall.utils.DataResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.shucong.mall.mapper.${domainName}Mapper;
+import com.shucong.mall.mapper.TopicMapper;
 import org.springframework.web.bind.annotation.RestController;
-import com.shucong.mall.entity.${domainName};
+import com.shucong.mall.entity.Topic;
 import java.util.List;
 
-@RestController("Api${domainName}Controller")
-@RequestMapping("${domainName?uncap_first}")
-public class ${domainName}Controller {
+@RestController("ApiTopicController")
+@RequestMapping("topic")
+public class TopicController {
 
     @Autowired
-    private ${domainName}Mapper ${domainName?uncap_first}Mapper;
+    private TopicMapper topicMapper;
 
     @RequestMapping("list")
     DataResponse list(){
-        return new DataResponse(0, "返回成功",${domainName?uncap_first}Mapper.findAll());
+        return new DataResponse(0, "返回成功",topicMapper.findAll());
     }
 
     @RequestMapping("get")
     DataResponse get(int id){
-        return new DataResponse(0, "返回成功",${domainName?uncap_first}Mapper.findById(id));
+        return new DataResponse(0, "返回成功",topicMapper.findById(id));
     }
 
     @RequestMapping("delete")
     DataResponse delete(int id){
-        int result = ${domainName?uncap_first}Mapper.deleteById(id);
+        int result = topicMapper.deleteById(id);
         if(result>0) {
             return new DataResponse(0, "删除成功");
         } else {

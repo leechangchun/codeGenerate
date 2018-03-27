@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.CartsMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Carts">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from carts
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Carts">
+    insert into carts (id, user_id, sku_id, 
+      product_id, product_name, product_attribute, 
+      thumb, price, quantity
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productAttribute,jdbcType=VARCHAR}, 
+      #{thumb,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Carts">
+    update carts
+    set user_id = #{userId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_attribute = #{productAttribute,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, sku_id, product_id, product_name, product_attribute, thumb, price, 
+    quantity
+    from carts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, sku_id, product_id, product_name, product_attribute, thumb, price, 
+    quantity
+    from carts
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Carts">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from carts
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Carts">
+    insert into carts (id, user_id, sku_id, 
+      product_id, product_name, product_attribute, 
+      thumb, price, quantity
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productAttribute,jdbcType=VARCHAR}, 
+      #{thumb,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Carts">
+    update carts
+    set user_id = #{userId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_attribute = #{productAttribute,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, sku_id, product_id, product_name, product_attribute, thumb, price, 
+    quantity
+    from carts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, sku_id, product_id, product_name, product_attribute, thumb, price, 
+    quantity
+    from carts
+  </select>
+</mapper>

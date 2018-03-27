@@ -7,6 +7,7 @@ import freemarker.template.TemplateExceptionHandler;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -72,38 +73,74 @@ public class GenerateUtil {
             case "INT":
             case "TINYINT":
             case "BIT":
-                return "int";
+                return "Integer";
             case "DECIMAL":
-                return "double";
+                return "Double";
             case "BIGINT":
-                return "long";
+                return "Long";
             default:
                 return sqlType;
         }
     }
     /**生成类文件*/
-    public void geneFile(String templateFileName,String packageName, String tableName,String classFix, Map<String, Object> dataMap) {
+    public void geneJava(String templateFileName, String packageName, String tableName, String classFix, Map<String, Object> dataMap) {
+        gene(1,templateFileName,packageName,tableName,classFix, dataMap);
+    }
+
+    /**生成映射文件*/
+    public void geneMappers(String templateFileName,String packageName, String tableName,String classFix, Map<String, Object> dataMap) {
+        gene(2,templateFileName,packageName+".mappers",tableName,classFix, dataMap);
+    }
+
+    public void geneTemp(String templateFileName, String packageName, String tableName, String classFix, Map<String, Object> dataMap) {
+        gene(3,templateFileName,packageName+".mappers",tableName,classFix, dataMap);
+    }
+
+    /**生成类文件*/
+    public void gene(int type,String templateFileName,String packageName, String tableName,String classFix, Map<String, Object> dataMap) {
         try {
+            String domainName = getDomainName(tableName);
+            if(domainName.endsWith("s")){
+                domainName = domainName.substring(0,domainName.length()-1);
+            }
             dataMap.put("packageName", packageName);
-            dataMap.put("tableName", getDomainName(tableName));
-            String fileName = "./app/src/main/java/" + packageName.replace('.', '/');
+            dataMap.put("tableName", tableName);
+            dataMap.put("domainName", domainName);
 
-            File file1 = new File(fileName);
-            file1.mkdirs();
-            FileWriter out = new FileWriter(file1.getPath() + "/" + getDomainName(tableName) +classFix+ ".java");
+            String fileName,floder;
 
-            Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
-            String file = getClass().getResource("/").getFile();
-            cfg.setDirectoryForTemplateLoading(new File(file));
-            cfg.setDefaultEncoding("UTF-8");
-            cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+            if(type==1) {
+                floder = "./app/src/main/java/" + packageName.replace('.', '/');
+                fileName = domainName + classFix + ".java";
+            } else if (type==2){
+                floder = "./app/src/main/resources/mybatis/mapper/";
+                fileName = domainName.toLowerCase() + ".xml";
+            } else {
+                floder = "./app/src/main/resources/templates/manage/"+domainName.toLowerCase();
+                fileName = templateFileName.substring(0,templateFileName.indexOf('.'))  +  ".ftl";
+            }
 
-            Template tmp = cfg.getTemplate(templateFileName, "UTF-8");
+            File file = new File(floder);
+            file.mkdirs();
+            FileWriter out = new FileWriter(file.getPath() + "/" + fileName);
+
+            Template tmp = getTemplate(templateFileName);
             tmp.process(dataMap, out);
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**获取模板*/
+    private Template getTemplate(String templateFileName) throws IOException {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
+        String file = getClass().getResource("/").getFile();
+        cfg.setDirectoryForTemplateLoading(new File(file));
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        return cfg.getTemplate(templateFileName, "UTF-8");
     }
 
     public String getFileName(String src) {
@@ -135,4 +172,6 @@ public class GenerateUtil {
         String result = sb.toString().replaceAll("_","");
         return StringUtils.capitalize(result);
     }
+
+
 }

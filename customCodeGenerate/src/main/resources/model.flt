@@ -1,6 +1,6 @@
 package ${packageName};
 
-public class ${tableName}{
+public class ${domainName}{
 <#list model as field>
     private ${field.type} ${field.name};
 </#list>
@@ -17,7 +17,7 @@ public class ${tableName}{
 </#list>
     @Override
     public String toString() {
-        return "${tableName}{" +
+        return "${domainName}{" +
 <#list model as field>
     <#if field.type = 'String' >
                 "<#if field_index!=0>,</#if> ${field.name}='" + ${field.name} + '\'' +

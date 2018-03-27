@@ -18,6 +18,18 @@ public class DataResponse {
         this.data = null;
     }
 
+    public DataResponse(Object data) {
+        this.error = 0;
+        this.message = "成功";
+        this.data = data;
+    }
+
+    public DataResponse(Exception ex) {
+        this.error = 1000;
+        this.message = ex.getMessage();
+        this.data = null;
+    }
+
     public int getError() {
         return error;
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shucong.mall.mapper.${domainName}Mapper" >
+    <resultMap id="BaseResultMap" type="com.shucong.mall.entity.${domainName}" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <#list model as field><#if field.name!='id'>
+        <result column="${field.column}" property="${field.name}"/>
+        </#if></#list>
+    </resultMap>
+    <insert id="insert" parameterType="com.shucong.mall.entity.${domainName}" >
+        insert into ${tableName?uncap_first} (<#list model as field>${field.name}<#if field_has_next>,</#if></#list>)
+        values (<#list model as field>${r'#'}{${field.name}}<#if field_has_next>,</#if></#list>)
+    </insert>
+    <delete id="deleteByID" parameterType="java.lang.Integer" >
+        delete from ${tableName?uncap_first}
+        where id = ${r'#'}{id}
+    </delete>
+    <select id="findAll" resultMap="BaseResultMap">
+        select *
+        from ${tableName?uncap_first}
+    </select>
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select *
+        from ${tableName?uncap_first}
+        where id = ${r'#'}{id}
+    </select>
+    <update id="update" parameterType="com.shucong.mall.entity.${domainName}">
+        UPDATE ${tableName?uncap_first}
+        SET
+        <#list model as field><#if field.name!='id'>
+        ${field.column} = ${r'#'}{${field.name}}<#if field_has_next>,</#if>
+        </#if></#list>
+        WHERE
+        id = ${r'#'}{id}
+    </update>
+</mapper>

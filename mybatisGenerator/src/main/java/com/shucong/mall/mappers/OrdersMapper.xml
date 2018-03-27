@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Orders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="CHAR" property="orderNo" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="origin_amount" jdbcType="DECIMAL" property="originAmount" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+    <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Orders">
+    insert into orders (id, order_no, user_id, 
+      origin_amount, amount, receiver_name, 
+      receiver_mobile, receiver_address, message, 
+      status, created_at)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=CHAR}, #{userId,jdbcType=INTEGER}, 
+      #{originAmount,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverMobile,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Orders">
+    update orders
+    set order_no = #{orderNo,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      origin_amount = #{originAmount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_no, user_id, origin_amount, amount, receiver_name, receiver_mobile, 
+    receiver_address, message, status, created_at
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, user_id, origin_amount, amount, receiver_name, receiver_mobile, 
+    receiver_address, message, status, created_at
+    from orders
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Orders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="CHAR" property="orderNo" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="origin_amount" jdbcType="DECIMAL" property="originAmount" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+    <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Orders">
+    insert into orders (id, order_no, user_id, 
+      origin_amount, amount, receiver_name, 
+      receiver_mobile, receiver_address, message, 
+      status, created_at)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=CHAR}, #{userId,jdbcType=INTEGER}, 
+      #{originAmount,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverMobile,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Orders">
+    update orders
+    set order_no = #{orderNo,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      origin_amount = #{originAmount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_no, user_id, origin_amount, amount, receiver_name, receiver_mobile, 
+    receiver_address, message, status, created_at
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, user_id, origin_amount, amount, receiver_name, receiver_mobile, 
+    receiver_address, message, status, created_at
+    from orders
+  </select>
+</mapper>

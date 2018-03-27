@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.ProductSkuMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.ProductSku">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="sales_count" jdbcType="INTEGER" property="salesCount" />
+    <result column="storage_index" jdbcType="VARCHAR" property="storageIndex" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_sku
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.ProductSku">
+    insert into product_sku (id, product_id, name, 
+      product_attribute, price, quantity, 
+      image, sales_count, storage_index
+      )
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{productAttribute,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{salesCount,jdbcType=INTEGER}, #{storageIndex,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.ProductSku">
+    update product_sku
+    set product_id = #{productId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      product_attribute = #{productAttribute,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      sales_count = #{salesCount,jdbcType=INTEGER},
+      storage_index = #{storageIndex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, product_id, name, product_attribute, price, quantity, image, sales_count, 
+    storage_index
+    from product_sku
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, product_id, name, product_attribute, price, quantity, image, sales_count, 
+    storage_index
+    from product_sku
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.ProductSku">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="sales_count" jdbcType="INTEGER" property="salesCount" />
+    <result column="storage_index" jdbcType="VARCHAR" property="storageIndex" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_sku
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.ProductSku">
+    insert into product_sku (id, product_id, name, 
+      product_attribute, price, quantity, 
+      image, sales_count, storage_index
+      )
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{productAttribute,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{salesCount,jdbcType=INTEGER}, #{storageIndex,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.ProductSku">
+    update product_sku
+    set product_id = #{productId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      product_attribute = #{productAttribute,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      sales_count = #{salesCount,jdbcType=INTEGER},
+      storage_index = #{storageIndex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, product_id, name, product_attribute, price, quantity, image, sales_count, 
+    storage_index
+    from product_sku
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, product_id, name, product_attribute, price, quantity, image, sales_count, 
+    storage_index
+    from product_sku
+  </select>
+</mapper>

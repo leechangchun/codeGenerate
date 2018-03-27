@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.ProductAttributeValuesMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.ProductAttributeValues">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_attribute_id" jdbcType="INTEGER" property="productAttributeId" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_attribute_values
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.ProductAttributeValues">
+    insert into product_attribute_values (id, product_id, product_attribute_id, 
+      value)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productAttributeId,jdbcType=INTEGER}, 
+      #{value,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.ProductAttributeValues">
+    update product_attribute_values
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_attribute_id = #{productAttributeId,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, product_id, product_attribute_id, value
+    from product_attribute_values
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, product_id, product_attribute_id, value
+    from product_attribute_values
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.ProductAttributeValues">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_attribute_id" jdbcType="INTEGER" property="productAttributeId" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_attribute_values
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.ProductAttributeValues">
+    insert into product_attribute_values (id, product_id, product_attribute_id, 
+      value)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productAttributeId,jdbcType=INTEGER}, 
+      #{value,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.ProductAttributeValues">
+    update product_attribute_values
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_attribute_id = #{productAttributeId,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, product_id, product_attribute_id, value
+    from product_attribute_values
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, product_id, product_attribute_id, value
+    from product_attribute_values
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+<${r'#'}include "../header.ftl">
+<${r'#'}include "../top_bar.ftl">
+<div class="container-fluid">
+    <div class="row">
+        <${r'#'}include "../side_bar.ftl">
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">${domainName?uncap_first}列表</h2>
+            <form class="form-inline">
+                <a href="/manage/${domainName?uncap_first}/add" class="btn btn-primary">添加${domainName?uncap_first}</a>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <#list model as field>
+                        <th>${field.name}</th>
+                        </#list>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <${r'#'}list list as ${domainName?uncap_first}>
+                    <tr>
+                    <#list model as field>
+                        <th>${r'$'}{${domainName?uncap_first}.${field.name}!}</th>
+                    </#list>
+                        <td>
+                            <a href="/manage/${domainName?uncap_first}/update?id=${r'$'}{${domainName?uncap_first}.id}">编辑</a>
+                            <a href="/manage/${domainName?uncap_first}/delete?id=${r'$'}{${domainName?uncap_first}.id}">删除</a>
+                        </td>
+                    </tr>
+                    </${r'#'}list>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+<${r'#'}include "../footer.ftl">

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.CouponsMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Coupons">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="scope" jdbcType="TINYINT" property="scope" />
+    <result column="scope_value" jdbcType="VARCHAR" property="scopeValue" />
+    <result column="order_amount" jdbcType="INTEGER" property="orderAmount" />
+    <result column="discount" jdbcType="TINYINT" property="discount" />
+    <result column="discount_value" jdbcType="INTEGER" property="discountValue" />
+    <result column="expire_days" jdbcType="INTEGER" property="expireDays" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coupons
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Coupons">
+    insert into coupons (id, name, scope, 
+      scope_value, order_amount, discount, 
+      discount_value, expire_days, quantity, 
+      note, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{scope,jdbcType=TINYINT}, 
+      #{scopeValue,jdbcType=VARCHAR}, #{orderAmount,jdbcType=INTEGER}, #{discount,jdbcType=TINYINT}, 
+      #{discountValue,jdbcType=INTEGER}, #{expireDays,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Coupons">
+    update coupons
+    set name = #{name,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=TINYINT},
+      scope_value = #{scopeValue,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=TINYINT},
+      discount_value = #{discountValue,jdbcType=INTEGER},
+      expire_days = #{expireDays,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, scope, scope_value, order_amount, discount, discount_value, expire_days, 
+    quantity, note, status
+    from coupons
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, scope, scope_value, order_amount, discount, discount_value, expire_days, 
+    quantity, note, status
+    from coupons
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Coupons">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="scope" jdbcType="TINYINT" property="scope" />
+    <result column="scope_value" jdbcType="VARCHAR" property="scopeValue" />
+    <result column="order_amount" jdbcType="INTEGER" property="orderAmount" />
+    <result column="discount" jdbcType="TINYINT" property="discount" />
+    <result column="discount_value" jdbcType="INTEGER" property="discountValue" />
+    <result column="expire_days" jdbcType="INTEGER" property="expireDays" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coupons
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Coupons">
+    insert into coupons (id, name, scope, 
+      scope_value, order_amount, discount, 
+      discount_value, expire_days, quantity, 
+      note, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{scope,jdbcType=TINYINT}, 
+      #{scopeValue,jdbcType=VARCHAR}, #{orderAmount,jdbcType=INTEGER}, #{discount,jdbcType=TINYINT}, 
+      #{discountValue,jdbcType=INTEGER}, #{expireDays,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{status,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Coupons">
+    update coupons
+    set name = #{name,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=TINYINT},
+      scope_value = #{scopeValue,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=TINYINT},
+      discount_value = #{discountValue,jdbcType=INTEGER},
+      expire_days = #{expireDays,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, scope, scope_value, order_amount, discount, discount_value, expire_days, 
+    quantity, note, status
+    from coupons
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, scope, scope_value, order_amount, discount, discount_value, expire_days, 
+    quantity, note, status
+    from coupons
+  </select>
+</mapper>

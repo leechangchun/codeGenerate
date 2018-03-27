@@ -24,12 +24,18 @@
                         connectionURL="jdbc:mysql://192.168.1.222:3306/shucong_mall?useUnicode=true"
                         userId="root"
                         password="123456"/>
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.test.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.shucong.mall.entity" targetProject="src/main/java">
+            <property name="trimStrings" value="true" />
 
-        <sqlMapGenerator targetPackage="com.test.mapper" targetProject="src/main/java"/>
+        </javaModelGenerator>
 
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.test.mapper" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.shucong.mall.mappers" targetProject="src/main/java"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shucong.mall.mapper" targetProject="src/main/java"/>
 
         <!--生成全部的表-->
         <table tableName="%"/>

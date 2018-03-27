@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shucong.mall.mapper.ProductsMapper">
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Products">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="min_price" jdbcType="DECIMAL" property="minPrice" />
+    <result column="max_price" jdbcType="DECIMAL" property="maxPrice" />
+    <result column="sales_count" jdbcType="INTEGER" property="salesCount" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="tags" jdbcType="CHAR" property="tags" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from products
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Products">
+    insert into products (id, category_id, title, 
+      name, thumb, images, 
+      description, min_price, max_price, 
+      sales_count, warehouse_id, status, 
+      tags, updated_at, created_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{minPrice,jdbcType=DECIMAL}, #{maxPrice,jdbcType=DECIMAL}, 
+      #{salesCount,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{tags,jdbcType=CHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Products">
+    update products
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=DECIMAL},
+      max_price = #{maxPrice,jdbcType=DECIMAL},
+      sales_count = #{salesCount,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      tags = #{tags,jdbcType=CHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, category_id, title, name, thumb, images, description, min_price, max_price, 
+    sales_count, warehouse_id, status, tags, updated_at, created_at
+    from products
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, category_id, title, name, thumb, images, description, min_price, max_price, 
+    sales_count, warehouse_id, status, tags, updated_at, created_at
+    from products
+  </select>
+  <resultMap id="BaseResultMap" type="com.shucong.mall.entity.Products">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="min_price" jdbcType="DECIMAL" property="minPrice" />
+    <result column="max_price" jdbcType="DECIMAL" property="maxPrice" />
+    <result column="sales_count" jdbcType="INTEGER" property="salesCount" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="tags" jdbcType="CHAR" property="tags" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from products
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shucong.mall.entity.Products">
+    insert into products (id, category_id, title, 
+      name, thumb, images, 
+      description, min_price, max_price, 
+      sales_count, warehouse_id, status, 
+      tags, updated_at, created_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{minPrice,jdbcType=DECIMAL}, #{maxPrice,jdbcType=DECIMAL}, 
+      #{salesCount,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{tags,jdbcType=CHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.shucong.mall.entity.Products">
+    update products
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=DECIMAL},
+      max_price = #{maxPrice,jdbcType=DECIMAL},
+      sales_count = #{salesCount,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      tags = #{tags,jdbcType=CHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, category_id, title, name, thumb, images, description, min_price, max_price, 
+    sales_count, warehouse_id, status, tags, updated_at, created_at
+    from products
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, category_id, title, name, thumb, images, description, min_price, max_price, 
+    sales_count, warehouse_id, status, tags, updated_at, created_at
+    from products
+  </select>
+</mapper>
